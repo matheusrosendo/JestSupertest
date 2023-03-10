@@ -41,6 +41,13 @@ describe("Post /users", () =>{
 
     describe("when the username and/or password is missing", () =>{
         
+        test("this test will not pass on purpose", async () =>{
+            const response = await request(app).post("/users").send({
+                username: "username"
+            })
+            expect(response.statusCode).toEqual(200)
+        })
+
         test("should respond with status 400 because password is missing", async () =>{
             const response = await request(app).post("/users").send({
                 username: "username"
