@@ -41,6 +41,13 @@ describe("Post /users", () =>{
 
     describe("when the username and/or password is missing", () =>{
         
+        test("should respond with a 404 code", async () =>{
+            const response = await request(app).post("/asdf").send({
+                username: "username"
+            })
+            expect(response.statusCode).toEqual(404)
+        })
+
         test("should respond with status 400 because password is missing", async () =>{
             const response = await request(app).post("/users").send({
                 username: "username"
