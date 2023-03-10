@@ -41,11 +41,11 @@ describe("Post /users", () =>{
 
     describe("when the username and/or password is missing", () =>{
         
-        test("this test will not pass on purpose", async () =>{
-            const response = await request(app).post("/users").send({
+        test("should respond with a 404 code", async () =>{
+            const response = await request(app).post("/asdf").send({
                 username: "username"
             })
-            expect(response.statusCode).toEqual(200)
+            expect(response.statusCode).toEqual(404)
         })
 
         test("should respond with status 400 because password is missing", async () =>{
